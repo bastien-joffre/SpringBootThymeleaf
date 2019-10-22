@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-    private static List<Car> cars = new ArrayList<Car>();
+    private static List<Car> cars = new ArrayList<>();
 
     static {
         cars.add(new Car("Bill", "Gates"));
@@ -38,7 +38,7 @@ public class MainController {
     }
 
     @RequestMapping(value = { "/carList" }, method = RequestMethod.GET)
-    public String personList(Model model) {
+    public String carList(Model model) {
 
         model.addAttribute("cars", cars);
 
@@ -46,7 +46,7 @@ public class MainController {
     }
 
     @RequestMapping(value = { "/addCar" }, method = RequestMethod.GET)
-    public String showAddPersonPage(Model model) {
+    public String showAddCarPage(Model model) {
 
         CarForm carForm = new CarForm();
         model.addAttribute("carForm", carForm);
