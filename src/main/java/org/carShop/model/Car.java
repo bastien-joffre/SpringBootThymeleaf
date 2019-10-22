@@ -1,13 +1,15 @@
-package org.o7planning.thymeleaf.model;
+package org.carShop.model;
 
 public class Car {
 
     private String brand;
     private String type;
+    private int id;
 
-    public Car(String brand, String type) {
+    public Car(String brand, String type, int id) {
         this.brand = brand;
         this.type = type;
+        this.id = id;
     }
 
     public String getBrand() {
@@ -24,6 +26,14 @@ public class Car {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
 }

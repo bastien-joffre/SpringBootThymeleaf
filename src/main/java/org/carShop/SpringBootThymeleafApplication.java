@@ -1,4 +1,4 @@
-package org.o7planning.thymeleaf;
+package org.carShop;
 
 
 import org.springframework.boot.SpringApplication;

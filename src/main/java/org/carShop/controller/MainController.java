@@ -1,10 +1,8 @@
-package org.o7planning.thymeleaf.controller;
+package org.carShop.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.o7planning.thymeleaf.form.CarForm;
-import org.o7planning.thymeleaf.model.Car;
+import org.carShop.form.CarForm;
+import org.carShop.model.Car;
+import org.carShop.store.CarStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
-
-    private static List<Car> cars = new ArrayList<>();
-
-    static {
-        cars.add(new Car("Bill", "Gates"));
-        cars.add(new Car("Steve", "Jobs"));
-    }
 
     // Injectez (inject) via application.properties.
     @Value("${welcome.message}")
@@ -40,7 +31,7 @@ public class MainController {
     @RequestMapping(value = { "/carList" }, method = RequestMethod.GET)
     public String carList(Model model) {
 
-        model.addAttribute("cars", cars);
+        model.addAttribute("cars", CarStore.getCars());
 
         return "carList";
     }
@@ -63,8 +54,7 @@ public class MainController {
 
         if (brand != null && brand.length() > 0 //
                 && type != null && type.length() > 0) {
-            Car newCar = new Car(brand, type);
-            cars.add(newCar);
+            CarStore.addCar(brand, type);
 
             return "redirect:/carList";
         }

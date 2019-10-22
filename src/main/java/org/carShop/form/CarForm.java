@@ -1,4 +1,4 @@
-package org.o7planning.thymeleaf.form;
+package org.carShop.form;
 
 
 public class CarForm {
