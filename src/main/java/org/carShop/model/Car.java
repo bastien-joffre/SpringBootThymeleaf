@@ -1,15 +1,16 @@
 package org.carShop.model;
 
 public class Car {
+    private static int cursorCarId;
 
     private String brand;
     private String type;
     private int id;
 
-    public Car(String brand, String type, int id) {
+    public Car(String brand, String type) {
         this.brand = brand;
         this.type = type;
-        this.id = id;
+        this.id = giveId();
     }
 
     public String getBrand() {
@@ -36,4 +37,9 @@ public class Car {
         return id;
     }
 
+    private static int giveId() {
+        int id = cursorCarId;
+        cursorCarId++;
+        return id;
+    }
 }
