@@ -31,7 +31,7 @@ public class MainController {
     @RequestMapping(value = { "/carList" }, method = RequestMethod.GET)
     public String carList(Model model) {
 
-        model.addAttribute("cars", CarStore.getCars());
+        model.addAttribute("cars", CarStore.findAll());
 
         return "carList";
     }

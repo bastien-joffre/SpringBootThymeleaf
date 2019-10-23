@@ -14,7 +14,7 @@ public class CarStore {
         cars.add(new Car("Renault", "R19", giveId()));
     }
 
-    public static List<Car> getCars() {
+    public static List<Car> findAll() {
         return cars;
     }
 
@@ -23,7 +23,7 @@ public class CarStore {
         cars.add(newCar);
     }
 
-    public static Car findCar(int id) {
+    public static Car findOne(int id) {
         for (Car car : cars) {
             if (car.getId() == id) {
                 return car;
