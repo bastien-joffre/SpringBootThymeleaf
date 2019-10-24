@@ -2,7 +2,6 @@ package org.carShop.repository;
 
 import org.carShop.model.Car;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +11,8 @@ public class CarRepository implements CarInterface {
     private static List<Car> cars = new ArrayList<>();
 
     static {
-        cars.add(new Car("Peugeot", "205"));
-        cars.add(new Car("Renault", "R19"));
+        cars.add(new Car("Peugeot", "205", 1));
+        cars.add(new Car("Renault", "R19", 2));
     }
 
     @Override
@@ -33,15 +32,11 @@ public class CarRepository implements CarInterface {
 
     @Override
     public void save(Car car) {
-
+        cars.add(car);
     }
 
     @Override
     public void delete(int id) {
-        for (Car car : cars) {
-            if (car.getId() == id) {
-                cars.remove(cars.indexOf(car));
-            }
-        }
+        cars.removeIf(car -> (car.getId() == id));
     }
 }

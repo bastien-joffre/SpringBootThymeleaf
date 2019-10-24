@@ -7,10 +7,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class SpringBootThymeleafApplication {
+public class SpringBootAPI {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootThymeleafApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootAPI.class, args);
+    }
 
 }

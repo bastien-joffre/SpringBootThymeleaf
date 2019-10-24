@@ -15,22 +15,22 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-            .select()
-            .apis(RequestHandlerSelectors.basePackage("org.carShop"))
-            .paths(PathSelectors.regex("/api.*"))
-            .build()
-            .apiInfo(apiInfo());
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("org.carShop"))
+                .paths(PathSelectors.regex("/api.*"))
+                .build()
+                .apiInfo(apiInfo());
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-            "My Wholesome Car Shop API",
-            "Interact with our shop catalog",
-            "1.0",
-            "Terms of service",
-            "Bastien Joffre",
-            "",
-            ""
+                "My Wholesome Car Shop API",
+                "Interact with our shop catalog",
+                "1.0",
+                "Terms of service",
+                "Bastien Joffre",
+                "",
+                ""
         );
     }
 }
