@@ -1,16 +1,24 @@
 package org.carShop.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity( name = "models")
 public class Car {
+
+    @Id
+    @GeneratedValue
+    private int id;
+
     private String brand;
     private String type;
-    private int id;
 
     public Car() {}
 
-    public Car(String brand, String type, int id) {
+    public Car(String brand, String type) {
         this.brand = brand;
         this.type = type;
-        this.id = id;
     }
 
     public String getBrand() {
@@ -27,10 +35,6 @@ public class Car {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getId() {

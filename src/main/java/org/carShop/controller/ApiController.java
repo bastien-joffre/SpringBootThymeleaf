@@ -3,7 +3,8 @@ package org.carShop.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.carShop.model.Car;
-import org.carShop.repository.CarRepository;
+import org.carShop.repository.CarInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,55 +13,42 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class ApiController {
-    private CarRepository carRepository;
 
-    ApiController() {
-        carRepository = new CarRepository();
-    }
+    @Autowired
+    private CarInterface carInterface;
 
     @ApiOperation(value = "View a list of available cars")
     @RequestMapping(value = "/cars", method = RequestMethod.GET, produces = "application/json")
     public List<Car> listCars() {
 
-        return carRepository.findAll();
+        return carInterface.findAll();
     }
 
     @ApiOperation(value = "View a single car")
-    @RequestMapping(value = "/cars/{id}", method = RequestMethod.GET, produces = "application/json")
-    public Car findCar(@PathVariable("id") int id) {
+    @RequestMapping(value = "/cars/{id}", method = RequestMethod.GET)
+    public Car findCar(@PathVariable int id) {
 
-        return carRepository.findById(id);
+        return carInterface.findById(id);
     }
 
     @ApiOperation(value = "Add a new car")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public void createCar(@RequestBody Car car) {
-        System.out.println(car.getId());
-        System.out.println(car.getBrand());
-        System.out.println(car.getType());
-        carRepository.save(car);
+
+        carInterface.save(car);
     }
 
     @ApiOperation(value = "Update a car")
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public void updateCar(
-            @RequestParam int targetId,
-            @RequestParam(required = false) String brand,
-            @RequestParam(required = false) String type) {
+    public void updateCar(@RequestBody Car car) {
 
-        Car carToUpdate = carRepository.findById(targetId);
-        if (brand != null) {
-            carToUpdate.setBrand(brand);
-        }
-        if (type != null) {
-            carToUpdate.setType(type);
-        }
+        carInterface.save(car);
     }
 
     @ApiOperation(value = "Delete a car")
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public void deleteCar(@RequestParam int targetId) {
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteCar(@PathVariable int id) {
 
-        carRepository.delete(targetId);
+        carInterface.deleteById(id);
     }
 }
